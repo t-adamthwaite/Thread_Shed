@@ -105,26 +105,26 @@ green&white;,;09/15/17,   Gail Phelps   ;,;$30.52
 ;,; green&white&blue   ;,; 09/15/17 , Myrtle Morris 
 ;,;   $22.66   ;,; green&white&blue;,;09/15/17"""
 
+
+#Split list into usable collection of data#
 individual_sales = daily_sales.split(" ,")
 
 data_points_first = []
-
 for sale in individual_sales:
     data_points_first.append(sale.split(";,;"))
 
 data_points_second = []
-
 for point in data_points_first:
     for i in point:
         data_points_second.append(i.split(","))
 
 
 data_points_stripped = []
-
 for point in data_points_second:
     for i in point:
         data_points_stripped.append(i.strip())
 
+#Reformat list into sublists with descriptive vars#
 customer = []
 amount_spent = []
 color = []
@@ -140,34 +140,39 @@ for i in range(0, len(data_points_stripped)):
     elif i % 4 == 3:
         date.append(data_points_stripped[i])
 
+#Reformat lists that need  to be reformatted#
 color_reform = []
-
 for point in color:
     color_reform.append(point.replace('&', ', '))
 
+#Print statements for each individual customer's purchases#
 for i in range(0, len(color)):
     print("{CUSTOMER} spent {AMOUNT_SPENT} on the color(s) {COLOR_REFORM} on {DATE}".format(CUSTOMER = customer[i], AMOUNT_SPENT = amount_spent[i], COLOR_REFORM = color_reform[i], DATE = date[i]))
 print("\n\n")
 
+#Print total amount of customers#
 print("Total Customers = " + str(len(customer)))
 
+#Find total sales value#
 total_sales = 0
 for i in amount_spent:
     value = i.replace('$', '').replace('.', '')
     total_sales += int(value)
 
-
+#Find list of individual items sold#
 new_color_list = []
 for color in color_reform:
     colors = color.split(", ")
     for i in colors:
         new_color_list.append(i)
 
+#Find total different colors wihthin new_color list#
 dif_colors = []
 for color in new_color_list:
     if color not in dif_colors:
         dif_colors.append(color)
 
+#Print amounts of each individual item sold and total revenue#
 print("Amount of 'white' sold: " + str(new_color_list.count("white")))
 print("Amount of 'blue' sold: " + str(new_color_list.count("blue")))
 print("Amount of 'yellow' sold: " + str(new_color_list.count("yellow")))
