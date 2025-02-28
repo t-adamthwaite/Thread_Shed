@@ -1,3 +1,5 @@
+##### A problem with this data collection is it does not account for the number of spools bought, only the color is defined. So I cannot write a code to determine the cost per item efectively. #####
+
 daily_sales = \
 """Edith Mcbride   ;,;$1.21   ;,;   white ;,; 
 09/15/17   ,Herbert Tran   ;,;   $7.29;,; 
@@ -151,7 +153,7 @@ for i in range(0, len(color)):
 print("\n\n")
 
 #Print total amount of customers#
-print("Total Customers = " + str(len(customer)))
+print("Total Customers: " + str(len(customer)))
 
 #Find total sales value#
 total_sales = 0
@@ -159,12 +161,14 @@ for i in amount_spent:
     value = i.replace('$', '').replace('.', '')
     total_sales += int(value)
 
-#Find list of individual items sold#
+#Find list of individual items sold and print#
 new_color_list = []
 for color in color_reform:
     colors = color.split(", ")
     for i in colors:
         new_color_list.append(i)
+
+print("Total 'Items' Sold: " + str(len(new_color_list)))
 
 #Find total different colors wihthin new_color list#
 dif_colors = []
